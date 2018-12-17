@@ -85,4 +85,22 @@ def self.most_common_location
 # cult.location
 end
 
+def self.minimum_age
+  #returns a `Fixnum` that is the minimum age required for followers joining this cult
+  18
+end
+
+def recruit_follower(follower)
+  if follower.age >= minimum_age
+  self.followers << follower
+  # or @@all << follower
+  # or follower= Follower.new
+  else
+  "You are too young to join this cult"
+  end
+end
+
+
+
+
 end

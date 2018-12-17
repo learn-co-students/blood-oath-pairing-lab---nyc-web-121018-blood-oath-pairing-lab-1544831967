@@ -53,9 +53,15 @@ end
 
 def fellow_cult_members
   cults.followers
-end 
+end
 
-
+def join_cult(cult)
+  if self.age >= Cult.mininum_age
+  cult.followers << self
+  else
+  "You are too young to join this cult"
+  end
+end
 
 
 
