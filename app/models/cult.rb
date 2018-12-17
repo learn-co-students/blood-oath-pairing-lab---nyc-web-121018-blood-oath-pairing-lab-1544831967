@@ -57,8 +57,9 @@ def self.find_by_founding_year(year)
 end
 
 def average_age #returns a float that is the average age of Self's followers
+  sum = 0
   followers.each do |follower|
-  sum = follower.age
+  sum += follower.age
   average = sum/(followers.length+1)
 end
 average
