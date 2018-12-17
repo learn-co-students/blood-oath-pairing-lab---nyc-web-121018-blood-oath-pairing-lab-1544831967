@@ -89,29 +89,57 @@ class Cult
   #     @name="Osho",
   #     @slogan="Free-love">
 
-  def self.find_by_location(location)
-    found_location = Cult.all.map do |cult|
-      if cult.location == location
-        cult.name
-      end
-    end
-    found_location.compact
-  end
-  #tests passed!
-  #   [1] pry(main)> Cult.find_by_location("USA")
-  #   => ["Alt-right", "Rock Music"]
 
-  def self.find_by_year(year)
-    found_year = Cult.all.map do |cult|
-      if cult.founding_year == year
-        cult.name
-      end
+  ##I WATCHED THE REVIEW LECTURE AND REALIZE WHY MY ORIGNAL CODE WAS WRONG FOR THIS METHOD!!!
+  def self.find_by_location(location)
+    ## ORIGNAL CODE
+    # Cult.all.map do |cult|
+    #   if cult.location == location
+    #     cult.name
+    #   end
+    # end
+    Cult.all.select do |cult|
+      cult.location == location
     end
-    found_year.compact
+  end
+  #new tests passed!
+  # [1] pry(main)> Cult.find_by_location("USA")
+  # => [#<Cult:0x007ff4e0105bf8
+  #     @founding_year=2017,
+  #     @location="USA",
+  #     @name="Alt-right",
+  #     @slogan="To preserve and protect the white race.">,
+  #  #<Cult:0x007ff4e0105b58
+  #     @founding_year=1955,
+  #     @location="USA",
+  #     @name="Rock Music",
+  #     @slogan="Rock and roll, dude.">]
+
+  ## SAME SITUATION HERE
+  def self.find_by_year(year)
+    ## ORIGNAL CODE
+    # found_year = Cult.all.map do |cult|
+    #   if cult.founding_year == year
+    #     cult.name
+    #   end
+    # end
+    # found_year.compact
+    Cult.all.select do |cult|
+      cult.founding_year == year
+    end
   end
   #tests passed!
-  #   [1] pry(main)> Cult.find_by_year(1955)
-  #   => ["Jonestown", "Rock Music"]
+  # [2] pry(main)> Cult.find_by_year(1955)
+  # => [#<Cult:0x007ff4e0105cc0
+  #   @founding_year=1955,
+  #   @location="Guyana",
+  #   @name="Jonestown",
+  #   @slogan="Apostolic socialism.">,
+  #  #<Cult:0x007ff4e0105b58
+  #   @founding_year=1955,
+  #   @location="USA",
+  #   @name="Rock Music",
+  #   @slogan="Rock and roll, dude.">]
 
 end #end of Cult class
 
