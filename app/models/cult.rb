@@ -53,15 +53,8 @@ class Cult
   end
 
   def self.least_popular
-    least_followers = 0
-    least_popular = nil
-    self.all.each do |cult|
-      if cult.cult_population <= least_followers
-        least_followers = cult.cult_population
-        least_popular = cult
-      end
-    end
-    least_popular
+    least_popular = self.all.sort_by {|cult| cult.cult_population }
+    least_popular.first
   end
 
   def self.most_common_location

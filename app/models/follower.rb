@@ -30,26 +30,19 @@ class Follower
   end
 
   def my_cults_slogans
-    cults.each { |cult| puts cult.slogan }
+    self.cults.each { |cult| puts cult.slogan }
   end
 
   def self.most_active
-    cults = 0
-    most_active = nil
-    self.all.each do |follower|
-      if follower.cults.count > cults
-        # binding.pry
-        cults = follower.cults.count
-        most_active = follower
-      end
-    end
-    most_active
+    most_active = self.all.sort_by { |follower| follower.cults.count }
+    most_active.last
   end
 
   def self.top_ten
-    self.all.sort do |follower|
-      follower.cults.count
-    end
+    top_ten = self.all.sort_by { |follower| follower.cults.count }
+    top_ten.reverse!
+    2.times {top_ten.pop}
+    top_ten
   end
 
 end # end of Follower class
